@@ -1,7 +1,8 @@
 <template>
   <div>
-    menu
+    <!-- Sidebar Menu -->
     <ul class="mt-2">
+      <!-- Loop through menu items -->
       <li class="cursor-pointer" v-for="(item, index) in data" :key="index">
         <section>
           <div
@@ -17,6 +18,7 @@
               </div>
               <div class="text-[14px]">{{ item.name }}</div>
             </section>
+            <!-- Check for subitems -->
             <section v-if="item.subItem && item.subItem.length">
               <img
                 src="@/components/layouts/dashboard/icons/subitem.svg"
@@ -24,11 +26,12 @@
               />
             </section>
           </div>
+
           <Transition>
             <div v-if="item.active" class="relative z-10 dark:text-[#828282]">
-              <!-- Filter out items based on isAdmin and isMentor -->
+              <!-- Render subitems -->
               <div
-                v-for="subItem in filteredSubItems(item.subItem)"
+                v-for="subItem in item.subItem"
                 @click="router.push(subItem.path)"
                 :key="subItem.name"
                 :class="{ 'bg-white dark:bg-[#1D1D1D]': router.currentRoute.value.path === subItem.path }"
@@ -52,45 +55,33 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/authStore";
 import dashboardIcon from "@/components/layouts/dashboard/icons/dashboard.svg";
+import profileIcon from "@/components/layouts/dashboard/icons/profile.svg";
 
-// Get the auth store and router
-const authStore = useAuthStore();
+// Vue Router and menu data
 const router = useRouter();
 
-const isAdmin = ref(false);
-const data = ref([]);
-
-// Set isAdmin and isMentor on mounted
-onMounted(() => {
-  const role = authStore.user.role?.position.toLowerCase();
-  isAdmin.value = true;
-  
-  data.value = [
-    {
-      name: "Profile",
-      icon: dashboardIcon,
-      path: "/admin",
-      is_admin: true,
-    },
-    {
-      name: "Admin",
-      icon: dashboardIcon,
-      path: "/admin/dahboard",
-      subItem: [
-        {
-          name: "Dashboard",
-          icon: dashboardIcon,
-          active: false,
-          path: "/admin/dahboard",
-          is_admin: true,
-        },
-      ],
-      active: false,
-    },
-  ];
-});
+const data = ref([
+  {
+    name: "Dashboard",
+    icon: dashboardIcon,
+    path: "/dashboard",
+    active: false,
+  },
+  {
+    name: "User Profile",
+    icon: profileIcon,
+    path: "/user",
+    active: false,
+    subItem: [
+      {
+        name: "Edit Profile",
+        icon: profileIcon,
+        path: "/user/edit",
+      },
+    ],
+  },
+]);
 
 // Toggle active state
 const toggleActive = (index) => {
@@ -100,16 +91,6 @@ const toggleActive = (index) => {
     router.push(data.value[index].path);
   }
 };
-
-// Filter subItems based on `isAdmin` and `isMentor`
-const filteredSubItems = (subItems) => {
-  return subItems.filter((subItem) => {
-    if (isAdmin.value) return subItem.is_admin;
-    if (isMentor.value) return subItem.is_mentor;
-    return !subItem.is_admin && !subItem.is_mentor;
-  });
-};
-
 </script>
 
 <style scoped>

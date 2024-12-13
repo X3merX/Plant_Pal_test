@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import LandingPage from "../pages/landing/index.vue";
+import DashboardPage from "@/pages/dashboard/index.vue";
 import UserProfilePage from "@/pages/user/profile/index.vue";
 
 const routes = [
@@ -11,10 +12,26 @@ const routes = [
     meta: {
       title: "MAI - Institut",
       requiredAuth: false,
-      requiredAdmin: false,
-      requiredMentor: false,
     },
   },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: DashboardPage,
+    meta: {
+      requiredAuth: true,
+    },
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: UserProfilePage,
+    meta: {
+      title: "User Profile",
+      requiredAuth: true,
+    },
+  },
+  
   // {
   //   path: "/login",
   //   name: "login",
