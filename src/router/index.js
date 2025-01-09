@@ -10,7 +10,7 @@ const routes = [
     name: "landingPage",
     component: LandingPage,
     meta: {
-      title: "MAI - Institut",
+      title: "Landing page",
       requiredAuth: false,
     },
   },
@@ -19,6 +19,7 @@ const routes = [
     name: "dashboard",
     component: DashboardPage,
     meta: {
+      title: "Dashboard",
       requiredAuth: true,
     },
   },
