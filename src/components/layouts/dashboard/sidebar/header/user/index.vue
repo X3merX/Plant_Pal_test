@@ -5,7 +5,7 @@
       <AvatarFallback>Profile</AvatarFallback>
     </Avatar>
     <section class="flex-col justify-center flex">
-      <h3 class="text-[15px] dark:text-white text-[#0C3E6C] font-normal">{{ authStore.user.name }}</h3>
+      <h3 class="text-[15px] dark:text-white text-[#0C3E6C] font-normal">Kelompok A-01</h3>
     </section>
   </div>
 </template>

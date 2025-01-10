@@ -8,30 +8,30 @@ const routes = [
   {
     path: "/",
     name: "landingPage",
-    component: LandingPage,
-    meta: {
-      title: "Landing page",
-      requiredAuth: false,
-    },
-  },
-  {
-    path: "/dashboard",
-    name: "dashboard",
     component: DashboardPage,
     meta: {
       title: "Dashboard",
       requiredAuth: true,
     },
   },
-  {
-    path: "/user",
-    name: "user",
-    component: UserProfilePage,
-    meta: {
-      title: "User Profile",
-      requiredAuth: true,
-    },
-  },
+  // {
+  //   path: "/dashboard",
+  //   name: "dashboard",
+  //   component: DashboardPage,
+  //   meta: {
+  //     title: "Dashboard",
+  //     requiredAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/user",
+  //   name: "user",
+  //   component: UserProfilePage,
+  //   meta: {
+  //     title: "User Profile",
+  //     requiredAuth: true,
+  //   },
+  // },
   
   // {
   //   path: "/login",
@@ -88,17 +88,17 @@ const routes = [
   //     title: "Register",
   //   },
   // },
-  {
-    path: "/admin",
-    name: "profile",
-    component: UserProfilePage,
-    meta: {
-      title: "Profile",
-      requiredAuth: true,
-      requiredAdmin: false,
-      requiredMentor: false,
-    },
-  },
+  // {
+  //   path: "/admin",
+  //   name: "profile",
+  //   component: UserProfilePage,
+  //   meta: {
+  //     title: "Profile",
+  //     requiredAuth: true,
+  //     requiredAdmin: false,
+  //     requiredMentor: false,
+  //   },
+  // },
 ];
 
 const router = createRouter({

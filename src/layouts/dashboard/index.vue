@@ -1,5 +1,7 @@
 <template>
-  <section class="w-screen h-screen dark:bg-[#0C0A09] bg-[#F3F6F8] flex ">
+  <section
+    class="w-screen h-screen overflow-hidden dark:bg-[#0C0A09] bg-[#F3F6F8] flex"
+  >
     <Transition name="side">
       <section
         v-if="useSidebarStore().sidebar"
@@ -7,13 +9,13 @@
       >
         <DashboardHeader />
 
-        <footer class="absolute w-[80%] bottom-10">
+        <!-- <footer class="absolute w-[80%] bottom-10">
           <ButtonDefault @click="logout" class="w-full p-3">Logout</ButtonDefault>
-        </footer>
+        </footer> -->
         <DashboardMenu />
       </section>
     </Transition>
-    <main class="md:px-[62px] px-10 w-screen h-full overflow-auto">
+    <main class="md:px-[62px] px-10 w-screen h-full overflow-hidden">
       <header class="flex gap-4 justify-between items-center h-[114px]">
         <section class="flex gap-5 w-full items-center">
           <div
@@ -26,11 +28,12 @@
               alt="icon"
             />
           </div>
-          <div class="hidden sm:block dark:text-white">Hallo, {{ truncateString(authStore.user.name) }}!</div>
+          <div class="hidden sm:block dark:text-white">Hallo, Semua!</div>
         </section>
         <DropdownMenu>
-          <DropdownMenuTrigger class="bg-primary hover:bg-[#0C3E7C] text-white w-full max-w-[126px] px-2 py-2 rounded block sm:hidden"
-            >Hallo, {{ truncateString(authStore.user.name) }}!</DropdownMenuTrigger
+          <DropdownMenuTrigger
+            class="bg-primary hover:bg-[#0C3E7C] text-white w-full max-w-[126px] px-2 py-2 rounded block sm:hidden"
+            >Hallo, Semua!</DropdownMenuTrigger
           >
           <DropdownMenuContent>
             <Button
@@ -41,7 +44,15 @@
                 useDarkModeStore().darkMode ? "Light Mode ☀" : "Dark Mode 🌙"
               }}</span>
             </Button>
-            <DropdownMenuItem @click="authStore.user.role.position.toLowerCase() === 'admin' || authStore.user.role.position.toLowerCase() === 'mentor' ? $router.push('/admin/profile') : $router.push('/peserta/profile')">Profile</DropdownMenuItem>
+            <DropdownMenuItem
+              @click="
+                authStore.user.role.position.toLowerCase() === 'admin' ||
+                authStore.user.role.position.toLowerCase() === 'mentor'
+                  ? $router.push('/admin/profile')
+                  : $router.push('/peserta/profile')
+              "
+              >Profile</DropdownMenuItem
+            >
             <DropdownMenuItem @click="logout">Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -95,13 +106,12 @@ const logout = async () => {
   } catch (error) {
     console.error("Error during logout:", error);
   }
-}
+};
 
 function truncateString(str) {
   if (str === null || str === undefined) return null;
-    return str.length > 11 ? str.slice(0, 5) + '...' : str;
+  return str.length > 11 ? str.slice(0, 5) + "..." : str;
 }
-
 </script>
 
 <style lang="scss" scoped></style>

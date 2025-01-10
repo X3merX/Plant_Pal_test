@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center">
-    <h3 class="text-lg font-bold text-blue-600">{{ title }}</h3>
-    <p class="text-2xl font-semibold mt-2">
+  <div class="bg-white w-full dark:bg-[#1D1D1D] rounded-2xl shadow-lg p-6 text-center">
+    <h3 class="text-lg font-bold dark:text-white text-blue-600">{{ title }}</h3>
+    <p class="text-2xl font-semibold dark:text-white mt-2">
       {{ value }} <span class="text-base">{{ unit }}</span>
     </p>
   </div>

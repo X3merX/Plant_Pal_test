@@ -67,20 +67,7 @@ const data = ref([
     icon: dashboardIcon,
     path: "/dashboard",
     active: false,
-  },
-  {
-    name: "User Profile",
-    icon: profileIcon,
-    path: "/user",
-    active: false,
-    subItem: [
-      {
-        name: "Edit Profile",
-        icon: profileIcon,
-        path: "/user/edit",
-      },
-    ],
-  },
+  }
 ]);
 
 // Toggle active state
